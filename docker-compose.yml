@@ -17,7 +17,7 @@ services:
       - ofelia.restart=true
       - ofelia.enabled=true
       - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.schedule=${BACKUP_CRON_SCHEDULE:-0 0 3 * * *}"
-      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.command=sh -c 'sqlite3 /data/mailpit.db \".backup /data/mailpit.db.backup\"'"
+      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.command=sh -c 'apk --no-cache add sqlite && sqlite3 /data/mailpit.db \".backup /data/mailpit.db.backup\"'"
 
 volumes:
   app_data:
