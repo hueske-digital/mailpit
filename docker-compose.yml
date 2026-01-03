@@ -7,12 +7,16 @@ services:
       - TZ=Europe/Berlin
       - MP_SMTP_AUTH_ALLOW_INSECURE=true
       - MP_SMTP_AUTH_FILE=/data/smtp.auth
+      - MP_UI_AUTH=${MP_UI_AUTH}
+      - CADDY_DOMAIN=${CADDY_DOMAIN}
+      - CADDY_TYPE=${CADDY_TYPE:-external}
+      - CADDY_PORT=${CADDY_PORT:-8025}
     ports:
       - "1025:1025"
     volumes:
       - app_data:/data
     networks:
-      proxy_apps:
+      - caddy
     labels:
       - ofelia.restart=true
       - ofelia.enabled=true
@@ -23,6 +27,4 @@ volumes:
   app_data:
 
 networks:
-  proxy_apps:
-    name: proxy_apps
-    external: true
+  caddy:
