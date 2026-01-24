@@ -13,6 +13,7 @@ services:
       - CADDY_PORT=${CADDY_PORT:-8025}
       - CADDY_AUTH=${CADDY_AUTH:-true}
       - CADDY_AUTH_GROUPS=${CADDY_AUTH_GROUPS:-}
+      - CADDY_AUTH_EXCEPT=${CADDY_AUTH_EXCEPT:-/api/*}
     ports:
       - "1025:1025"
     volumes:
